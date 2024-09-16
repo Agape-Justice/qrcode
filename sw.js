@@ -16,17 +16,17 @@ self.addEventListener('install', (e) => {
 })
 
 self.addEventListener('fetch', (e) => {
-    // if (e.request.mode === 'navigate') {
-    //     e.respondWith(fetch(e.request).catch(() => {
-    //         return caches.match('/loading.html');
-    //     }))
-    // } else {
-    //     e.respondWith(
-    //         caches.match(e.request).then(response => {
-    //             return response || fetch(e.request)
-    //         })
-    //     )
-    // }
+    if (e.request.mode === 'navigate') {
+        e.respondWith(fetch(e.request).catch(() => {
+            return caches.match('/loading.html');
+        }))
+    } else {
+        e.respondWith(
+            caches.match(e.request).then(response => {
+                return response || fetch(e.request)
+            })
+        )
+    }
 
     console.log('installing', e);
     

@@ -7,16 +7,16 @@ const image = document.querySelector('#image');
 let imageSrc = image.src;
 
 
-// window.addEventListener('load', (e) => {
-//     if ('serviceWorker' in navigator) {
-//         navigator.serviceWorker.register ('sw.js')
-//         .then (reg => {
-//             console.log('registration sucessful:', reg); 
-//         }).catch(e => {
-//             console.log('and error occured:',e);
-//         })
-//     }    
-// })
+window.addEventListener('load', (e) => {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register ('sw.js')
+        .then (reg => {
+            console.log('registration sucessful:', reg); 
+        }).catch(e => {
+            console.log('and error occured:',e);
+        })
+    }    
+})
 
 (generateBtn.addEventListener('click', (e) => {
     let writeBoxValue = writeBox.value;
