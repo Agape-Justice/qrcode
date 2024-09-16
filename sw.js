@@ -9,25 +9,41 @@ const filesToCache = [
     'image/logo192.png'
 ]
 
-self.addEventListener('install', (e) => {
-    e.waitUntil(
-        caches.open('Qrcode').then(cache => cache.addAll(filesToCache))
-    )
-})
+let cacheName = "QRcode";
 
-self.addEventListener('fetch', (e) => {
-    if (e.request.mode === 'navigate') {
-        e.respondWith(fetch(e.request).catch(() => {
-            return caches.match('/loading.html');
-        }))
-    } else {
-        e.respondWith(
-            caches.match(e.request).then(response => {
-                return response || fetch(e.request)
+self.addEventListener('install', event => {
+    event.waitUntil(
+        caches.open(cacheName)
+            .then(cache => {
+                return cache.addAll(filesToCache);
             })
-        )
-    }
+    );
+});
 
-    console.log('installing', e);
-    
-})
+// Fetch event handler
+self.addEventListener('fetch', event => {
+    event.respondWith(
+        caches.match(event.request)
+            .then(response => {
+                return response || fetch(event.request);
+            })
+            .catch(() => {
+                return caches.match('offline.html'); // Return cached offline page
+            })
+    );
+});
+
+// Activate event handler
+self.addEventListener('activate', event => {
+    event.waitUntil(
+        caches.keys().then(cacheKeys => {
+            return Promise.all(
+                cacheKeys.map(cacheKey => {
+                    if (cacheKey !== cacheName) {
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        })
+    );
+});

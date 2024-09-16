@@ -3,17 +3,17 @@
     "short_name": "QRCode",
     "description": "QRcode Generator",
     "display": "standalone",
-    "start-url": "/index.html",
-    "background_color": "#fff",
-    "theme_color": "#000",
+    "start-url": "index.html",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
     "icons": [
         {
-            "src": "/image/logo192.png",
+            "src": "image/logo192.png",
             "size": "192 x 192",
             "type": "image/png"
         },
         {
-            "src": "/image/logo512.png",
+            "src": "image/logo512.png",
             "size": "512 x 512",
             "type": "image/png"
         }

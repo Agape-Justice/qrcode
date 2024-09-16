@@ -7,26 +7,28 @@ const image = document.querySelector('#image');
 let imageSrc = image.src;
 
 
-window.addEventListener('load', (e) => {
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register ('sw.js')
-        .then (reg => {
-            console.log('registration sucessful:', reg); 
-        }).catch(e => {
-            console.log('and error occured:',e);
-        })
-    }    
-})
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
 
-(generateBtn.addEventListener('click', (e) => {
+        navigator.serviceWorker.register('sw.js')
+            .then(registration => {
+                console.log('Service worker registered:', registration);
+            })
+            .catch(error => {
+                console.error('Service worker registration failed:', error);
+            });
+    })
+}
+
+generateBtn.addEventListener('click', () => {
     let writeBoxValue = writeBox.value;
     e.preventDefault();
     if (writeBox.value === "") {
         alertBox.style.display = 'block';
         image.style.display = 'none';
-        setTimeout (() => {
-        alertBox.style.display = 'none';
-        },1000)
+        setTimeout(() => {
+            alertBox.style.display = 'none';
+        }, 1000)
     }
 
     else {
@@ -56,4 +58,4 @@ window.addEventListener('load', (e) => {
     }
 
 })
-)()
+
