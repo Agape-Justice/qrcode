@@ -3,7 +3,6 @@
     "short_name": "QRCode",
     "description": "QRcode Generator",
     "display": "standalone",
-    "start-url": "index.html",
     "orientation": "portrait",
     "background_color": "#ffffff",
     "theme_color": "#000000",
@@ -18,5 +17,8 @@
             "sizes": "512x512",
             "type": "image/png"
         }
-    ]
+    ],
+
+    "start-url": "index.html"
+
 }
