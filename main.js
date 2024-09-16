@@ -20,7 +20,7 @@ if ('serviceWorker' in navigator) {
     })
 }
 
-generateBtn.addEventListener('click', () => {
+generateBtn.addEventListener('click', e => {
     let writeBoxValue = writeBox.value;
     e.preventDefault();
     if (writeBox.value === "") {
